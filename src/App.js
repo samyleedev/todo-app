@@ -1,9 +1,11 @@
-import MainContainer from "./components/MainContainer";
+import TodoContainer from "./components/TodoContainer";
+import GraphContainer from "./components/GraphContainer";
 
 function App() {
   return (
-    <div className="App flex justify-center bg-slate-800 h-screen">
-      <MainContainer />
+    <div className="App flex  bg-slate-800 h-screen">
+      <TodoContainer />
+      <GraphContainer />
     </div>
   );
 }

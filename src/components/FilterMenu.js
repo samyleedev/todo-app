@@ -6,30 +6,30 @@ const FilterMenu = () => {
   const todosView = useSelector((state) => state.todos.todosView);
   const dispatch = useDispatch();
   return (
-    <div className="text-white p-2">
+    <div className="text-white flex justify-between">
       <button
-        className={`p-2 ${
+        className={`text-center w-1/3 ${
           todosView === "all" && "border-b-4 border-b-green-500"
         }`}
         onClick={() => dispatch(displayTodosView("all"))}
       >
-        All
+        Toutes
       </button>
       <button
-        className={`p-2 ${
+        className={`text-center w-1/3 ${
           todosView === "active" && "border-b-4 border-b-green-500"
         }`}
         onClick={() => dispatch(displayTodosView("active"))}
       >
-        Active
+        À faire
       </button>
       <button
-        className={`p-2 ${
+        className={`text-center w-1/3 ${
           todosView === "completed" && "border-b-4 border-b-green-500"
         }`}
         onClick={() => dispatch(displayTodosView("completed"))}
       >
-        Completed
+        Terminées
       </button>
     </div>
   );

@@ -12,7 +12,9 @@ const todosSlice = createSlice({
     addTodo: (state, action) => {
       const newTodo = {
         id: Date.now(),
-        task: action.payload,
+        task: action.payload.task,
+        importanceRating: action.payload.importanceRating,
+        urgencyRating: action.payload.urgencyRating,
         completed: false,
       };
       state.todosList.push(newTodo);

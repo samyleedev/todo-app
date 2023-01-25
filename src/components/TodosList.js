@@ -11,18 +11,18 @@ const TodosList = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="p-2">
+    <div className="mt-5">
       {todosView === "all" && (
         <>
           {allTodos.map((todo) => (
-            <TodoItem todo={todo} />
+            <TodoItem key={todo.id} todo={todo} />
           ))}
         </>
       )}
       {todosView === "completed" && (
         <>
           {completedTodos.map((todo) => (
-            <TodoItem todo={todo} />
+            <TodoItem key={todo.id} todo={todo} />
           ))}
           {completedTodos.length > 0 && (
             <button
@@ -37,7 +37,7 @@ const TodosList = () => {
       {todosView === "active" && (
         <>
           {activeTodos.map((todo) => (
-            <TodoItem todo={todo} />
+            <TodoItem key={todo.id} todo={todo} />
           ))}
         </>
       )}

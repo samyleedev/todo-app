@@ -19,15 +19,13 @@ const TodoItem = ({ todo }) => {
           className="h-5 w-5 rounded-xl mr-3"
           onClick={() => dispatch(toggleTodo(todo.id))}
         />
-        <p className={todo.completed && "line-through"}>{todo.task}</p>
+        <p className={`capitalize ${todo.completed && "line-through"}`}>
+          {todo.task}
+        </p>
       </div>
-      {todosView === "completed" && (
-        <>
-          <button onClick={() => dispatch(removeOneTodo(todo.id))}>
-            <BiTrashAlt />
-          </button>
-        </>
-      )}
+      <button onClick={() => dispatch(removeOneTodo(todo.id))}>
+        <BiTrashAlt />
+      </button>
     </div>
   );
 };
