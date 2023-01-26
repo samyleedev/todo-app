@@ -32,7 +32,11 @@ const Matrix = () => {
               bottom: fixPosition(todo.importanceRating),
               left: fixPosition(todo.urgencyRating),
             }}
-            title={`Tâche: ${todo.task}\nImportant: ${todo.importanceRating}/10\nUrgent: ${todo.urgencyRating}/10`}
+            title={`Tâche: ${todo.task}\nImportant: ${
+              todo.importanceRating
+            }/10\nUrgent: ${todo.urgencyRating}/10\n${
+              todo.completed ? "Terminée" : "À faire"
+            }`}
             key={todo.id}
             onContextMenu={(e) => handleRightClickDelete(e, todo.id)}
             onClick={() => handleClickCompleted(todo.id)}

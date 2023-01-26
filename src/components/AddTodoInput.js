@@ -5,27 +5,36 @@ import { Slider } from "@mui/material";
 
 const AddTodoInput = () => {
   const [task, setTask] = useState("");
+  const [error, setError] = useState(null);
   const [importanceRating, setImportanceRating] = useState(5);
   const [urgencyRating, setUrgencyRating] = useState(5);
 
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (task !== "") {
+    if (task.length < 3) {
+      setError(
+        "L'intitulé de la tâche doit être composé au minimum de 3 caractères."
+      );
+    }
+    if (task.length === 0) {
+      setError("Vous devez entrer l'intitulé de la tâche à ajouter.");
+    }
+    if (task.length >= 3) {
       const newTodo = {
         task,
         importanceRating,
         urgencyRating,
       };
       dispatch(addTodo(newTodo));
+      setTask("");
+      setImportanceRating(5);
+      setUrgencyRating(5);
     }
-
-    setTask("");
-    setImportanceRating(5);
-    setUrgencyRating(5);
   };
   const handleOnChangeTask = (event) => {
     setTask(event.target.value);
+    setError(null);
   };
 
   const handleOnChangeImportance = (event) => {
@@ -71,6 +80,7 @@ const AddTodoInput = () => {
           placeholder="Ajouter une tâche"
           onChange={(e) => handleOnChangeTask(e)}
         />
+        {error && <p className="text-red-600 font-bold mt-1">{error}</p>}
         <div className="m-12 text-white">
           <Slider
             min={0}
