@@ -1,16 +1,31 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { removeOneTodo, toggleTodo } from "../redux/slices/todos/todos.slice";
+import TodosList from "./TodosList";
+import FilterMenu from "./FilterMenu";
 
-const GraphContainer = () => {
+const Matrix = () => {
   const todos = useSelector((state) => state.todos.todosList);
-
+  const appView = useSelector((state) => state.todos.appView);
+  const dispatch = useDispatch();
   const fixPosition = (rating) => {
     return 80 * rating - 12;
   };
 
+  const handleRightClickDelete = (event, todoID) => {
+    event.preventDefault();
+    if (event.button === 2) {
+      dispatch(removeOneTodo(todoID));
+    }
+  };
+
+  const handleClickCompleted = (todoID) => {
+    dispatch(toggleTodo(todoID));
+  };
+
   return (
-    <div className="w-full h-auto flex justify-center items-center">
-      <div className="w-[800px] h-[800px] border-l-4 border-b-4 border-yellow-300 z-10 relative rounded overflow-hidden">
+    <div className="w-full h-auto flex flex-col items-center justify-center">
+      <div className="w-[800px] h-[800px] border-l-4 border-b-4 border-yellow-300 z-10 relative rounded">
         {todos.map((todo) => (
           <div
             style={{
@@ -19,6 +34,8 @@ const GraphContainer = () => {
             }}
             title={`Tâche: ${todo.task}\nImportant: ${todo.importanceRating}/10\nUrgent: ${todo.urgencyRating}/10`}
             key={todo.id}
+            onContextMenu={(e) => handleRightClickDelete(e, todo.id)}
+            onClick={() => handleClickCompleted(todo.id)}
             className={`w-6 h-6 rounded-xl border-2 hover:scale-125 border-yellow-500 ${
               todo.completed ? "bg-blue-600" : "bg-rose-600 "
             } cursor-pointer absolute z-10`}
@@ -63,9 +80,13 @@ const GraphContainer = () => {
             src="../../images/deleguate.png"
           />
         </div>
+        <p className="text-white absolute -left-32">+ IMPORTANT</p>
+        <p className="text-white absolute -left-32 bottom-0">- IMPORTANT</p>
+        <p className="text-white absolute -bottom-14">- URGENT</p>
+        <p className="text-white absolute -bottom-14 right-0">+ URGENT</p>
       </div>
     </div>
   );
 };
 
-export default GraphContainer;
+export default Matrix;

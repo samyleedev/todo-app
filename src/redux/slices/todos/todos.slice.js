@@ -2,7 +2,8 @@ import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   todosList: [],
-  todosView: "all",
+  todosFilter: "all",
+  appView: "list",
 };
 
 const todosSlice = createSlice({
@@ -33,16 +34,28 @@ const todosSlice = createSlice({
       const todo = state.todosList.find((todo) => todo.id === action.payload);
       todo.completed = !todo.completed;
     },
-    displayTodosView: (state, action) => {
+    displayTodosFilter: (state, action) => {
       switch (action.payload) {
         case "all":
-          state.todosView = "all";
+          state.todosFilter = "all";
           break;
         case "active":
-          state.todosView = "active";
+          state.todosFilter = "active";
           break;
         case "completed":
-          state.todosView = "completed";
+          state.todosFilter = "completed";
+          break;
+        default:
+          return state;
+      }
+    },
+    displayAppView: (state, action) => {
+      switch (action.payload) {
+        case "list":
+          state.appView = "list";
+          break;
+        case "matrix":
+          state.appView = "matrix";
           break;
         default:
           return state;
@@ -56,7 +69,8 @@ export const {
   removeOneTodo,
   removeAllTodos,
   toggleTodo,
-  displayTodosView,
+  displayTodosFilter,
+  displayAppView,
 } = todosSlice.actions;
 
 export default todosSlice;

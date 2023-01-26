@@ -65,13 +65,13 @@ const AddTodoInput = () => {
     <div className="mt-2 p-3 bg-slate-600 rounded">
       <form>
         <input
-          className="w-full"
+          className="w-full rounded p-2 bg-slate-100"
           type="text"
           value={task}
           placeholder="Ajouter une tâche"
           onChange={(e) => handleOnChangeTask(e)}
         />
-        <div className=" text-white">
+        <div className="m-12 text-white">
           <Slider
             min={0}
             max={10}
@@ -79,6 +79,19 @@ const AddTodoInput = () => {
             getAriaValueText={valuetext}
             onChange={(e) => handleOnChangeImportance(e)}
             step={1}
+            sx={{
+              color: "success.main",
+              "& .MuiSlider-markLabel": {
+                fontSize: "1rem",
+                color: "#fff",
+              },
+              "& .MuiSlider-rail": {
+                height: "8px",
+              },
+              "& .MuiSlider-mark": {
+                height: "8px",
+              },
+            }}
             value={importanceRating}
             valueLabelDisplay="on"
             marks={marksImportance}
@@ -93,6 +106,18 @@ const AddTodoInput = () => {
             onChange={(e) => handleOnChangeUrgency(e)}
             value={urgencyRating}
             step={1}
+            sx={{
+              "& .MuiSlider-markLabel": {
+                fontSize: "1rem",
+                color: "#fff",
+              },
+              "& .MuiSlider-rail": {
+                height: "8px",
+              },
+              "& .MuiSlider-mark": {
+                height: "8px",
+              },
+            }}
             valueLabelDisplay="on"
             marks={marksUrgency}
           />

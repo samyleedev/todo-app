@@ -1,11 +1,12 @@
-import TodoContainer from "./components/TodoContainer";
-import GraphContainer from "./components/GraphContainer";
+import AsideContainer from "./components/AsideContainer";
+import MainContainer from "./components/MainContainer";
+import Matrix from "./components/Matrix";
 
 function App() {
   return (
     <div className="App flex  bg-slate-800 h-screen">
-      <TodoContainer />
-      <GraphContainer />
+      <AsideContainer />
+      <MainContainer />
     </div>
   );
 }
