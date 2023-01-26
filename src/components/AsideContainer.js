@@ -20,15 +20,15 @@ const AsideContainer = () => {
   };
 
   return (
-    <div className="w-1/3 p-4 bg-slate-900">
+    <div className="md:w-1/3 p-4 bg-slate-900">
       <button
         onClick={() => toggleView()}
-        className="bg-violet-700 text-white rounded w-full p-3 cursor-pointer"
+        className="bg-violet-700 text-white rounded w-full p-3 cursor-pointer "
       >
         CHANGER DE VUE
       </button>
       <AddTodoInput />
-      <div className="text-white mt-2">
+      <div className="text-white mt-2 p-4">
         <h2 className="text-center font-bold text-xl mb-2">
           Bienvenue sur TheMatrixApp !
         </h2>

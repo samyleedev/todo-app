@@ -9,7 +9,7 @@ const MainContainer = () => {
   return (
     <>
       {appView === "list" && (
-        <div className="w-full p-10">
+        <div className="w-full p-10 overflow-hidden">
           <FilterMenu />
           <TodosList />
         </div>

@@ -11,34 +11,44 @@ const TodosList = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="mt-5 flex flex-col">
+    <div className="mt-5 flex flex-col h-full overflow-y-scroll">
       {todosFilter === "all" && (
         <>
-          {allTodos.map((todo) => (
-            <TodoItem key={todo.id} todo={todo} />
-          ))}
+          {allTodos.length === 0 ? (
+            <p className="text-white">Vous n'avez aucune tâche à afficher.</p>
+          ) : (
+            allTodos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
+          )}
         </>
       )}
       {todosFilter === "completed" && (
         <>
-          {completedTodos.map((todo) => (
-            <TodoItem key={todo.id} todo={todo} />
-          ))}
-          {completedTodos.length > 0 && (
-            <button
-              onClick={() => dispatch(removeAllTodos())}
-              className="p-3 text-white bg-red-600 rounded w-fit place-self-end"
-            >
-              Tout supprimer
-            </button>
+          {completedTodos.length === 0 ? (
+            <p className="text-white">Vous n'avez aucune tâche terminée</p>
+          ) : (
+            <>
+              {completedTodos.map((todo) => (
+                <TodoItem key={todo.id} todo={todo} />
+              ))}
+              {completedTodos.length > 0 && (
+                <button
+                  onClick={() => dispatch(removeAllTodos())}
+                  className="p-3 text-white bg-red-600 rounded w-fit place-self-end"
+                >
+                  Tout supprimer
+                </button>
+              )}
+            </>
           )}
         </>
       )}
       {todosFilter === "active" && (
         <>
-          {activeTodos.map((todo) => (
-            <TodoItem key={todo.id} todo={todo} />
-          ))}
+          {activeTodos.length === 0 ? (
+            <p className="text-white">Vous n'avez aucune tâche à faire.</p>
+          ) : (
+            activeTodos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
+          )}
         </>
       )}
     </div>
