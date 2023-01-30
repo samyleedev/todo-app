@@ -20,7 +20,7 @@ const AsideContainer = () => {
   };
 
   return (
-    <div className="md:w-1/3 p-4 bg-slate-900">
+    <div className="md:w-1/3 p-4 bg-slate-900 overflow-y-scroll">
       <button
         onClick={() => toggleView()}
         className="bg-violet-700 text-white rounded w-full p-3 cursor-pointer "
