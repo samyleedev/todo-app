@@ -2,26 +2,26 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeOneTodo, toggleTodo } from "../redux/slices/todos/todos.slice";
 
-const MOBILE_WIDTH = 300;
+const MOBILE_WIDTH = 350;
 const SM_WIDTH = 500;
-const MD_WIDTH = 600;
-const LG_WIDTH = 700;
-const XL_WIDTH = 800;
+const MD_WIDTH = 550;
+const LG_WIDTH = 600;
+const XL_WIDTH = 600;
 
 const WIDTH_VARIANTS = {
-  mobile: "w-[300px] h-[300px]",
+  mobile: "w-[350px] h-[350px]",
   sm: "sm:w-[500px] sm:h-[500px]",
-  md: "md:w-[600px] md:h-[600px]",
-  lg: "lg:w-[700px] lg:h-[700px]",
-  xl: "xl:w-[800px] xl:h-[800px]",
+  md: "md:w-[550px] md:h-[550px]",
+  lg: "lg:w-[600px] lg:h-[600px]",
+  xl: "xl:w-[600px] xl:h-[600px]",
 };
 
 const ABSOLUTE_LEFT_VARIANTS = {
-  mobile: `left-[150px]`,
+  mobile: `left-[175px]`,
   sm: `sm:left-[250px]`,
-  md: `md:left-[300px]`,
-  lg: `lg:left-[350px]`,
-  xl: `xl:left-[400px]`,
+  md: `md:left-[225px]`,
+  lg: `lg:left-[300px]`,
+  xl: `xl:left-[300px]`,
 };
 
 const Matrix = () => {
@@ -42,7 +42,6 @@ const Matrix = () => {
   });
 
   const fixPosition = (rating, screenWitdh) => {
-    // let screenWitdh = window.innerWidth;
     let matrixWidth;
 
     //mobile
@@ -60,7 +59,7 @@ const Matrix = () => {
     }
 
     //lg
-    else if (screenWitdh >= 1024 && screenWitdh < 1280) {
+    else if (screenWitdh >= 1024 && screenWitdh <= 1280) {
       matrixWidth = LG_WIDTH;
     }
     //xl
@@ -85,7 +84,7 @@ const Matrix = () => {
   };
 
   return (
-    <div className="w-full min-h-[500px]  md:min-h-[800px] flex flex-col items-center justify-center">
+    <div className="w-full min-h-screen flex flex-col items-center justify-center">
       <div
         className={`${WIDTH_VARIANTS.mobile} ${WIDTH_VARIANTS.sm} ${WIDTH_VARIANTS.md} ${WIDTH_VARIANTS.lg} ${WIDTH_VARIANTS.xl} border-l-4 border-b-4 border-yellow-300 z-10 relative rounded`}
       >

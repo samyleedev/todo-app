@@ -1,4 +1,5 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
   todosList: [],
@@ -14,7 +15,7 @@ const todosSlice = createSlice({
   reducers: {
     addTodo: (state, action) => {
       const newTodo = {
-        id: Math.floor(Math.random() * 100),
+        id: uuidv4(),
         task: action.payload.task,
         importanceRating: action.payload.importanceRating,
         urgencyRating: action.payload.urgencyRating,
@@ -114,9 +115,9 @@ export const selectTodosFilteredAndSorted = createSelector(
       todos = todos.sort((a, b) => {
         let sortFunction;
         if (orderIsAsc) {
-          sortFunction = a.taskName > b.taskName ? -1 : 1;
+          sortFunction = a.task > b.task ? -1 : 1;
         } else if (!orderIsAsc) {
-          sortFunction = b.taskName > a.taskName ? -1 : 1;
+          sortFunction = b.task > a.task ? -1 : 1;
         }
         return sortFunction;
       });

@@ -57,7 +57,7 @@ const TodosList = () => {
           className="p-2 rounded bg-red-500 text-white w-fit self-end mt-5 cursor-pointer"
           onClick={() => dispatch(removeAllTodos())}
         >
-          Supprimer tout
+          Tout supprimer
         </div>
       )}
     </div>
