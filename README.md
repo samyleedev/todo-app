@@ -19,15 +19,18 @@ Here is the "EinsenhowerTodoApp". Add a todo, associate it to an importance rati
 
 - Add todo (task name, importance rating, urgency rating)
 - Switch on different view : list view or Eisenhower matrix view
-- On list view: filtering (all, active or completed) / sorting (by task, importance or urgency)
+- On list view: filtering (all, active or completed) / sorting (by task, importance or urgency) / remove one todo or all completed todos
 - On matrix view: left click to complete task / right click to remove task
 - Persist data into localStorage
+- Responsive
 - Errors management
 
 ### Screenshots
 
 ![](./public/screenshots/screen1.png)
+
 ![](./public/screenshots/screen2.png)
+
 ![](./public/screenshots/screen3.png)
 
 ### Links
@@ -43,4 +46,4 @@ Here is the "EinsenhowerTodoApp". Add a todo, associate it to an importance rati
 
 ## Author
 
-My portfolio : [SamyLeeDev.fr](samyleedev.fr)
+My portfolio : [samyleedev.fr](https://www.samyleedev.fr/)
