@@ -1,10 +1,7 @@
 import React from "react";
-import FilterMenu from "./FilterMenu";
 import AddTodoInput from "./AddTodoInput";
-import TodosList from "./TodosList";
 import { useDispatch, useSelector } from "react-redux";
-import { displayAppView } from "../redux/slices/todos/todos.slice";
-import { current } from "@reduxjs/toolkit";
+import { setAppView } from "../redux/slices/todos/todos.slice";
 
 const AsideContainer = () => {
   const dispatch = useDispatch();
@@ -12,10 +9,10 @@ const AsideContainer = () => {
 
   const toggleView = () => {
     if (appView === "list") {
-      dispatch(displayAppView("matrix"));
+      dispatch(setAppView("matrix"));
     }
     if (appView === "matrix") {
-      dispatch(displayAppView("list"));
+      dispatch(setAppView("list"));
     }
   };
 
@@ -25,7 +22,9 @@ const AsideContainer = () => {
         onClick={() => toggleView()}
         className="bg-violet-700 text-white rounded w-full p-3 cursor-pointer "
       >
-        CHANGER DE VUE
+        {appView === "matrix"
+          ? 'Passer en vue "Liste"'
+          : 'Passer en vue "Matrice"'}
       </button>
       <AddTodoInput />
       <div className="text-white mt-2 p-4">
@@ -34,7 +33,7 @@ const AsideContainer = () => {
         </h2>
         <p className="mb-2">
           Ajoutez vos différentes tâches en leur associant une note d'importance
-          et d'urgence.
+          et d'urgence.import AddTodoInput from './AddTodoInput';
         </p>
         <p className="mb-2">
           Visualisez vos tâches sous la forme d'une liste ou via la matrice

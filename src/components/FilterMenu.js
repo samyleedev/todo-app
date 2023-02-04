@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { displayTodosFilter } from "../redux/slices/todos/todos.slice";
+import { setTodosFilter } from "../redux/slices/todos/todos.slice";
 
 const FilterMenu = () => {
   const todosFilter = useSelector((state) => state.todos.todosFilter);
@@ -11,7 +11,7 @@ const FilterMenu = () => {
         className={`text-center w-1/3 ${
           todosFilter === "all" && "border-b-4 border-b-green-500"
         }`}
-        onClick={() => dispatch(displayTodosFilter("all"))}
+        onClick={() => dispatch(setTodosFilter("all"))}
       >
         Toutes
       </button>
@@ -19,7 +19,7 @@ const FilterMenu = () => {
         className={`text-center w-1/3 ${
           todosFilter === "active" && "border-b-4 border-b-green-500"
         }`}
-        onClick={() => dispatch(displayTodosFilter("active"))}
+        onClick={() => dispatch(setTodosFilter("active"))}
       >
         À faire
       </button>
@@ -27,7 +27,7 @@ const FilterMenu = () => {
         className={`text-center w-1/3 ${
           todosFilter === "completed" && "border-b-4 border-b-green-500"
         }`}
-        onClick={() => dispatch(displayTodosFilter("completed"))}
+        onClick={() => dispatch(setTodosFilter("completed"))}
       >
         Terminées
       </button>
