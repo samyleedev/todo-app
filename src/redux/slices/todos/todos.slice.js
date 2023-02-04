@@ -1,8 +1,12 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice, createSelector } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
   todosList: [],
-  todosView: "all",
+  todosFilter: "all",
+  todosSortBy: "taskName",
+  todosSortOrderByAsc: true,
+  appView: "list",
 };
 
 const todosSlice = createSlice({
@@ -11,8 +15,10 @@ const todosSlice = createSlice({
   reducers: {
     addTodo: (state, action) => {
       const newTodo = {
-        id: Date.now(),
-        task: action.payload,
+        id: uuidv4(),
+        task: action.payload.task,
+        importanceRating: action.payload.importanceRating,
+        urgencyRating: action.payload.urgencyRating,
         completed: false,
       };
       state.todosList.push(newTodo);
@@ -31,16 +37,46 @@ const todosSlice = createSlice({
       const todo = state.todosList.find((todo) => todo.id === action.payload);
       todo.completed = !todo.completed;
     },
-    displayTodosView: (state, action) => {
+    setTodosFilter: (state, action) => {
       switch (action.payload) {
         case "all":
-          state.todosView = "all";
+          state.todosFilter = "all";
           break;
         case "active":
-          state.todosView = "active";
+          state.todosFilter = "active";
           break;
         case "completed":
-          state.todosView = "completed";
+          state.todosFilter = "completed";
+          break;
+        default:
+          return state;
+      }
+    },
+    setTodosSortBy: (state, action) => {
+      switch (action.payload) {
+        case "taskName":
+          state.todosSortBy = "taskName";
+          break;
+        case "importance":
+          state.todosSortBy = "importance";
+          break;
+        case "urgency":
+          state.todosSortBy = "urgency";
+          break;
+        default:
+          return state;
+      }
+    },
+    toggleTodosSortOrder: (state, action) => {
+      state.todosSortOrderByAsc = !state.todosSortOrderByAsc;
+    },
+    setAppView: (state, action) => {
+      switch (action.payload) {
+        case "list":
+          state.appView = "list";
+          break;
+        case "matrix":
+          state.appView = "matrix";
           break;
         default:
           return state;
@@ -54,7 +90,61 @@ export const {
   removeOneTodo,
   removeAllTodos,
   toggleTodo,
-  displayTodosView,
+  setTodosFilter,
+  setTodosSortBy,
+  toggleTodosSortOrder,
+  setAppView,
 } = todosSlice.actions;
+
+export const selectTodosFilteredAndSorted = createSelector(
+  (state) => state.todos.todosList,
+  (state) => state.todos.todosFilter,
+  (state) => state.todos.todosSortBy,
+  (state) => state.todos.todosSortOrderByAsc,
+
+  (todoList, filter, sortBy, orderIsAsc) => {
+    let todos = [...todoList];
+
+    if (filter === "completed") {
+      todos = todos.filter((todo) => todo.completed);
+    } else if (filter === "active") {
+      todos = todos.filter((todo) => !todo.completed);
+    }
+
+    if (sortBy === "taskName") {
+      todos = todos.sort((a, b) => {
+        let sortFunction;
+        if (orderIsAsc) {
+          sortFunction = a.task > b.task ? -1 : 1;
+        } else if (!orderIsAsc) {
+          sortFunction = b.task > a.task ? -1 : 1;
+        }
+        return sortFunction;
+      });
+    } else if (sortBy === "importance") {
+      todos = todos.sort((a, b) => {
+        let sortFunction;
+        if (orderIsAsc) {
+          sortFunction = a.importanceRating - b.importanceRating;
+        } else if (!orderIsAsc) {
+          sortFunction = b.importanceRating - a.importanceRating;
+        }
+        return sortFunction;
+      });
+    } else if (sortBy === "urgency") {
+      todos = todos.sort((a, b) => {
+        let sortFunction;
+        if (orderIsAsc) {
+          sortFunction = a.urgencyRating - b.urgencyRating;
+        } else if (!orderIsAsc) {
+          sortFunction = b.urgencyRating - a.urgencyRating;
+        }
+        return sortFunction;
+      });
+    }
+
+    return todos;
+  }
+);
 
 export default todosSlice;

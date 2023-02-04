@@ -1,35 +1,35 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { displayTodosView } from "../redux/slices/todos/todos.slice";
+import { setTodosFilter } from "../redux/slices/todos/todos.slice";
 
 const FilterMenu = () => {
-  const todosView = useSelector((state) => state.todos.todosView);
+  const todosFilter = useSelector((state) => state.todos.todosFilter);
   const dispatch = useDispatch();
   return (
-    <div className="text-white p-2">
+    <div className="text-white flex justify-between">
       <button
-        className={`p-2 ${
-          todosView === "all" && "border-b-4 border-b-green-500"
+        className={`text-center w-1/3 ${
+          todosFilter === "all" && "border-b-4 border-b-green-500"
         }`}
-        onClick={() => dispatch(displayTodosView("all"))}
+        onClick={() => dispatch(setTodosFilter("all"))}
       >
-        All
+        Toutes
       </button>
       <button
-        className={`p-2 ${
-          todosView === "active" && "border-b-4 border-b-green-500"
+        className={`text-center w-1/3 ${
+          todosFilter === "active" && "border-b-4 border-b-green-500"
         }`}
-        onClick={() => dispatch(displayTodosView("active"))}
+        onClick={() => dispatch(setTodosFilter("active"))}
       >
-        Active
+        À faire
       </button>
       <button
-        className={`p-2 ${
-          todosView === "completed" && "border-b-4 border-b-green-500"
+        className={`text-center w-1/3 ${
+          todosFilter === "completed" && "border-b-4 border-b-green-500"
         }`}
-        onClick={() => dispatch(displayTodosView("completed"))}
+        onClick={() => dispatch(setTodosFilter("completed"))}
       >
-        Completed
+        Terminées
       </button>
     </div>
   );
