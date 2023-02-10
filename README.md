@@ -9,6 +9,8 @@
   - [Links](#links)
   - [Built with](#built-with)
 
+- [Installation](#installation)
+
 - [Author](#author)
 
 ## Overview
@@ -43,6 +45,12 @@ Here is the "EinsenhowerTodoApp". Add a todo, associate it to an importance rati
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [TailWind CSS](https://tailwindcss.com/)
 - [MUI](https://mui.com/)
+
+## Installation
+
+1. Clone the repository.
+2. In the terminal, type the instruction `npm install`.
+3. Then, type `npm start`to run the app.
 
 ## Author
 
