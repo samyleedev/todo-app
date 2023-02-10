@@ -118,7 +118,7 @@ const Matrix = () => {
           </p>
 
           <img
-            className="flex justify-center h-1/2 p-5 blur-[2px]"
+            className="flex justify-center h-1/2 p-5 opacity-25"
             src="../../images/preparation.png"
             alt="Logo tâches à planifier"
           />
@@ -131,7 +131,7 @@ const Matrix = () => {
           </p>
 
           <img
-            className="h-1/2 w-auto p-5 blur-[2px]"
+            className="h-1/2 w-auto p-5 opacity-25"
             src="../../images/blue-fire.png"
             alt="Logo tâches à traiter en priorité"
           />
@@ -142,7 +142,7 @@ const Matrix = () => {
           </p>
 
           <img
-            className="flex justify-center h-1/2 p-5 blur-[2px]"
+            className="flex justify-center h-1/2 p-5 opacity-25"
             src="../../images/bin.png"
             alt="Logo tâches à abandonner"
           />
@@ -153,7 +153,7 @@ const Matrix = () => {
           <p className="text-center font-bold text-xl text-white">À déléguer</p>
 
           <img
-            className="flex justify-center h-1/2 p-5 blur-[2px]"
+            className="flex justify-center h-1/2 p-5 opacity-25"
             src="../../images/deleguate.png"
             alt="Logo tâches à déléguer"
           />
